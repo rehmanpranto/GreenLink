@@ -1,0 +1,27 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="favicon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8BC4A7"/>
+      <stop offset="100%" style="stop-color:#6FA88A"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="url(#favicon-gradient)"/>
+  
+  <!-- University building -->
+  <rect x="8" y="18" width="16" height="10" fill="#ffffff" opacity="0.9"/>
+  <rect x="10" y="20" width="2" height="2" fill="#6FA88A"/>
+  <rect x="13" y="20" width="2" height="2" fill="#6FA88A"/>
+  <rect x="16" y="20" width="2" height="2" fill="#6FA88A"/>
+  <rect x="19" y="20" width="2" height="2" fill="#6FA88A"/>
+  <rect x="14" y="24" width="4" height="4" fill="#2D5A3D"/>
+  
+  <!-- Roof -->
+  <polygon points="16,8 10,16 22,16" fill="#2D5A3D"/>
+  
+  <!-- Connection dots -->
+  <circle cx="6" cy="10" r="1" fill="#ffffff" opacity="0.8"/>
+  <circle cx="26" cy="12" r="1" fill="#ffffff" opacity="0.8"/>
+  <circle cx="4" cy="20" r="1" fill="#ffffff" opacity="0.8"/>
+</svg>

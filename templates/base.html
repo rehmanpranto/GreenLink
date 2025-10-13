@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GreenLink{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% load static %}{% static 'images/favicon.svg' %}">
+    <link rel="alternate icon" href="{% load static %}{% static 'images/favicon.svg' %}">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="GreenLink - The official social platform for Green University of Bangladesh students. Connect, learn, and grow together.">
+    <meta name="keywords" content="Green University, Bangladesh, Student Network, Social Platform, GreenLink">
+    <meta name="author" content="Green University of Bangladesh">
+    <meta property="og:title" content="{% block og_title %}GreenLink{% endblock %}">
+    <meta property="og:description" content="Connect with your Green University classmates and build your academic network.">
+    <meta property="og:type" content="website">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% load static %}{% static 'css/green_university.css' %}" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="green-university-theme fade-in">
+    
+    <!-- Navigation Bar -->
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-green-primary">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'profiles:dashboard' %}">
+                <img src="{% static 'images/green-university-logo.svg' %}" alt="Green University" height="40" class="me-2">
+                <span class="fw-bold">GreenLink</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profiles:dashboard' %}">
+                            <i class="fas fa-home me-1"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'social:feed' %}">
+                            <i class="fas fa-newspaper me-1"></i> Feed
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'chat:chat_list' %}">
+                            <i class="fas fa-comments me-1"></i> Chat
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'events:events_list' %}">
+                            <i class="fas fa-calendar me-1"></i> Events
+                        </a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link position-relative me-3" href="{% url 'social:notifications' %}">
+                            <i class="fas fa-bell"></i>
+                            {% if unread_notifications_count > 0 %}
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ unread_notifications_count }}
+                                </span>
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <img src="{{ user.get_profile_picture }}" alt="Profile" class="rounded-circle me-2" width="30" height="30">
+                            {{ user.get_display_name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'profiles:profile_detail' user.pk %}">
+                                <i class="fas fa-user me-1"></i> My Profile
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'social:professional_profile' user.pk %}">
+                                <i class="fas fa-briefcase me-1"></i> Professional Profile
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'social:notifications' %}">
+                                <i class="fas fa-bell me-1"></i> Notifications
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="fas fa-edit me-1"></i> Edit Profile
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">
+                                <i class="fas fa-sign-out-alt me-1"></i> Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+    
+    <!-- Messages -->
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+            <i class="fas fa-info-circle me-2"></i>
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Main Content -->
+    <main class="{% if not user.is_authenticated %}full-height{% endif %}">
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    {% if user.is_authenticated %}
+    <footer class="bg-green-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Green University of Bangladesh</h5>
+                    <p class="mb-0">Connecting students, fostering academic excellence</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small>&copy; 2024 GreenLink Platform</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endif %}
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/green_university.js' %}"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

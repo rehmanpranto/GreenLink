@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}Register - GreenLink{% endblock %}
+
+{% block content %}
+<div class="hero-gradient min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="card border-0 shadow-lg slide-up">
+                    <div class="card-body p-5">
+                    <!-- Logo and Title -->
+                    <div class="text-center mb-4">
+                        <img src="{% static 'images/green-university-logo.svg' %}" alt="Green University" height="60" class="mb-3">
+                        <h2 class="text-success fw-bold mb-2">Join GreenLink</h2>
+                        <p class="text-muted">Connect with Green University students</p>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Personal Information -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+                                {{ form.first_name|add_class:"form-control" }}
+                                {% if form.first_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.first_name.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+                                {{ form.last_name|add_class:"form-control" }}
+                                {% if form.last_name.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.last_name.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                            {{ form.username|add_class:"form-control" }}
+                            {% if form.username.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.username.errors.0 }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Your username will be your student ID</div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Green University Email</label>
+                            {{ form.email|add_class:"form-control" }}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.email.errors.0 }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Use your official Green University email (e.g., 123456789@student.green.edu.bd)</div>
+                        </div>
+
+                        <!-- Student ID -->
+                        <div class="mb-3">
+                            <label for="{{ form.student_id.id_for_label }}" class="form-label">Student ID</label>
+                            {{ form.student_id|add_class:"form-control" }}
+                            {% if form.student_id.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.student_id.errors.0 }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">9-digit Green University student ID</div>
+                        </div>
+
+                        <!-- Department -->
+                        <div class="mb-3">
+                            <label for="{{ form.department.id_for_label }}" class="form-label">Department</label>
+                            {{ form.department }}
+                            {% if form.department.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.department.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Admission Batch (Cleaner UI) -->
+                        <div class="mb-3">
+                            <label class="form-label">Admission Batch</label>
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+                                    <label for="{{ form.batch_semester.id_for_label }}" class="form-label small">Semester</label>
+                                    {{ form.batch_semester }}
+                                    {% if form.batch_semester.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.batch_semester.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="{{ form.batch_year.id_for_label }}" class="form-label small">Year</label>
+                                    {{ form.batch_year }}
+                                    {% if form.batch_year.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.batch_year.errors.0 }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-text">
+                                <small><i class="fas fa-info-circle me-1"></i>
+                                Spring: Jan-Apr | Summer: May-Aug | Fall: Sep-Dec</small>
+                            </div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label for="{{ form.phone_number.id_for_label }}" class="form-label">Phone Number</label>
+                            {{ form.phone_number|add_class:"form-control" }}
+                            {% if form.phone_number.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.phone_number.errors.0 }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Bangladeshi phone number (optional)</div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="{{ form.password1.id_for_label }}" class="form-label">Password</label>
+                            {{ form.password1|add_class:"form-control" }}
+                            {% if form.password1.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.password1.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-4">
+                            <label for="{{ form.password2.id_for_label }}" class="form-label">Confirm Password</label>
+                            {{ form.password2|add_class:"form-control" }}
+                            {% if form.password2.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.password2.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="terms" required>
+                                <label class="form-check-label" for="terms">
+                                    I agree to the <a href="#" class="text-success">Terms of Service</a> and <a href="#" class="text-success">Privacy Policy</a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-user-plus me-2"></i>Create Account
+                            </button>
+                        </div>
+
+                        <!-- Login Link -->
+                        <div class="text-center">
+                            <p class="mb-0">Already have an account? 
+                                <a href="{% url 'accounts:login' %}" class="text-success fw-bold text-decoration-none">Sign In</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="text-center mt-4">
+                <p class="text-muted small">
+                    <i class="fas fa-shield-alt me-1"></i>
+                    Your information is secure and will be verified by Green University
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.form-control:focus, .form-select:focus {
+    border-color: #8BC4A7;
+    box-shadow: 0 0 0 0.2rem rgba(139, 196, 167, 0.25);
+}
+
+.btn-success {
+    background-color: #8BC4A7;
+    border-color: #8BC4A7;
+}
+
+.btn-success:hover {
+    background-color: #6FA88A;
+    border-color: #6FA88A;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.form-check-input:checked {
+    background-color: #8BC4A7;
+    border-color: #8BC4A7;
+}
+</style>
+{% endblock %}
