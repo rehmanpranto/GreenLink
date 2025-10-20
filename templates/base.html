@@ -21,71 +21,74 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Aesthetic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     {% block css_styles %}
-    <!-- Custom CSS - Load appropriate styles based on page -->
+    <!-- Custom CSS - Aesthetic Theme -->
+    <link href="{% load static %}{% static 'css/aesthetic_theme.css' %}" rel="stylesheet">
     <link href="{% load static %}{% static 'css/green_university.css' %}" rel="stylesheet">
     {% endblock %}
     
     {% block extra_css %}{% endblock %}
 </head>
-<body class="green-university-theme fade-in">
+<body class="aesthetic-theme fade-in">
     
-    <!-- Navigation Bar -->
+    <!-- Aesthetic Navigation Bar -->
     {% if user.is_authenticated %}
-    <nav class="navbar-modern">
-        <div class="main-container">
+    <nav class="aesthetic-navbar">
+        <div class="aesthetic-nav-container">
             
             <!-- Left Section -->
             <div class="nav-left">
-                <a href="{% url 'profiles:dashboard' %}" class="navbar-brand-modern">
-                    GreenLink
+                <a href="{% url 'profiles:dashboard' %}" class="aesthetic-brand">
+                    <span class="brand-icon">🌿</span>
+                    <span class="brand-text">GreenLink</span>
                 </a>
-                <input type="text" placeholder="Search GreenLink" class="nav-search">
+                <div class="aesthetic-search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." class="aesthetic-search">
+                </div>
             </div>
             
-            <!-- Center Section - Navigation Icons -->
-            <div class="nav-center nav-icons">
-                <a href="{% url 'profiles:dashboard' %}" class="nav-icon" title="Home">
+            <!-- Center Section - Navigation -->
+            <div class="nav-center">
+                <a href="{% url 'profiles:dashboard' %}" class="nav-link-item" title="Home">
                     <i class="fas fa-home"></i>
+                    <span>Home</span>
                 </a>
-                <a href="{% url 'social:groups' %}" class="nav-icon" title="Groups">
+                <a href="{% url 'social:groups' %}" class="nav-link-item" title="Groups">
                     <i class="fas fa-users"></i>
+                    <span>Groups</span>
                 </a>
-                <a href="{% url 'events:events_list' %}" class="nav-icon" title="Events">
+                <a href="{% url 'events:events_list' %}" class="nav-link-item" title="Events">
                     <i class="fas fa-calendar-alt"></i>
+                    <span>Events</span>
                 </a>
-                <a href="{% url 'chat:chat_list' %}" class="nav-icon" title="Messenger">
+                <a href="{% url 'chat:chat_list' %}" class="nav-link-item" title="Messages">
                     <i class="fas fa-comment-alt"></i>
-                </a>
-                <a href="#" class="nav-icon" title="Marketplace">
-                    <i class="fas fa-shopping-bag"></i>
+                    <span>Messages</span>
                 </a>
             </div>
             
             <!-- Right Section -->
-            <div class="nav-right nav-icons">
-                <a href="{% url 'profiles:profile_detail' user.pk %}" class="nav-icon" title="Profile">
-                    <img src="{{ user.get_profile_picture }}" alt="Profile" 
-                         style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
-                </a>
-                
-                <div class="nav-icon" title="Menu">
-                    <i class="fas fa-th"></i>
-                </div>
-                
-                <a href="{% url 'social:notifications' %}" class="nav-icon" title="Notifications">
+            <div class="nav-right">
+                <a href="{% url 'social:notifications' %}" class="nav-icon-btn" title="Notifications">
                     <i class="fas fa-bell"></i>
                     {% if unread_notifications_count > 0 %}
-                        <span class="nav-notification-badge">{{ unread_notifications_count }}</span>
+                        <span class="notification-badge">{{ unread_notifications_count }}</span>
                     {% endif %}
                 </a>
                 
                 <div class="dropdown">
-                    <div class="nav-icon" data-bs-toggle="dropdown" title="Account">
-                        <i class="fas fa-caret-down"></i>
+                    <div class="user-menu-trigger" data-bs-toggle="dropdown">
+                        <img src="{{ user.get_profile_picture }}" alt="Profile" class="user-avatar">
+                        <span class="user-name">{{ user.first_name }}</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu aesthetic-dropdown dropdown-menu-end">
                         <li><a class="dropdown-item" href="{% url 'profiles:profile_detail' user.pk %}">
                             <i class="fas fa-user me-2"></i> View Profile
                         </a></li>
@@ -125,17 +128,27 @@
         {% endblock %}
     </main>
     
-    <!-- Footer -->
+    <!-- Aesthetic Footer -->
     {% if user.is_authenticated %}
-    <footer class="bg-green-dark text-white py-4 mt-5">
+    <footer class="aesthetic-footer">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h5>Green University of Bangladesh</h5>
-                    <p class="mb-0">Connecting students, fostering academic excellence</p>
+                    <h5 class="footer-title">
+                        🌿 Green University of Bangladesh
+                    </h5>
+                    <p class="footer-text">Connecting students, building community</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <small>&copy; 2024 GreenLink Platform</small>
+                    <div class="footer-links">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Support</a>
+                        <a href="#">About</a>
+                    </div>
+                    <p class="footer-copyright">
+                        &copy; 2025 GreenLink. All rights reserved.
+                    </p>
                 </div>
             </div>
         </div>
