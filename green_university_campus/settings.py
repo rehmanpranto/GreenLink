@@ -98,15 +98,15 @@ DATABASES = {
     }
 }
 
-# PostgreSQL (Neon Database) configuration - READY FOR PRODUCTION
-# Uncomment when PostgreSQL drivers are properly configured in production
+# PostgreSQL configuration - Use environment variables for production
+# Example configuration (replace with your actual credentials):
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'neondb',
-#         'USER': 'neondb_owner',
-#         'PASSWORD': 'npg_vuCQ7EZY2sJR',
-#         'HOST': 'ep-wandering-butterfly-a1ngn41l-pooler.ap-southeast-1.aws.neon.tech',
+#         'NAME': 'your_database_name',
+#         'USER': 'your_username',
+#         'PASSWORD': 'your_password',
+#         'HOST': 'your_host',
 #         'PORT': '5432',
 #         'OPTIONS': {
 #             'sslmode': 'require',
