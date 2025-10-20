@@ -6,8 +6,8 @@
     <title>{% block title %}GreenLink{% endblock %}</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="{% load static %}{% static 'images/favicon.svg' %}">
-    <link rel="alternate icon" href="{% load static %}{% static 'images/favicon.svg' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/greenlink-logo.png' %}">
+    <link rel="alternate icon" href="{% static 'images/greenlink-logo.png' %}">
     
     <!-- Meta Tags -->
     <meta name="description" content="GreenLink - The official social platform for Green University of Bangladesh students. Connect, learn, and grow together.">
@@ -44,7 +44,7 @@
             <!-- Left Section -->
             <div class="nav-left">
                 <a href="{% url 'profiles:dashboard' %}" class="aesthetic-brand">
-                    <span class="brand-icon">🌿</span>
+                    <img src="{% static 'images/greenlink-logo.png' %}" alt="GreenLink" class="brand-logo">
                     <span class="brand-text">GreenLink</span>
                 </a>
                 <div class="aesthetic-search-box">

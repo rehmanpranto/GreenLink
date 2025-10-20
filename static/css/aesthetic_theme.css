@@ -143,6 +143,12 @@ img {
     white-space: nowrap;
 }
 
+.brand-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
 .brand-icon {
     font-size: 1.75rem;
 }
