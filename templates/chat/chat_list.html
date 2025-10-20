@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Messages - GreenLink{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card">
+                <div class="card-header bg-white border-bottom">
+                    <h4 class="mb-0">
+                        <i class="fas fa-comments me-2"></i>
+                        Messages
+                    </h4>
+                </div>
+                <div class="card-body p-0">
+                    {% if conversations %}
+                        <div class="list-group list-group-flush">
+                            {% for conv in conversations %}
+                                <a href="{% url 'chat:conversation_detail' conv.id %}" class="list-group-item list-group-item-action">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-3">
+                                            {% if conv.other_user.profile.profile_picture %}
+                                                <img src="{{ conv.other_user.profile.profile_picture.url }}" 
+                                                     alt="{{ conv.other_user.username }}"
+                                                     class="rounded-circle" 
+                                                     style="width: 50px; height: 50px; object-fit: cover;">
+                                            {% else %}
+                                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" 
+                                                     style="width: 50px; height: 50px;">
+                                                    <span class="fs-5">{{ conv.other_user.username|slice:":1"|upper }}</span>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="mb-0">{{ conv.other_user.get_full_name|default:conv.other_user.username }}</h6>
+                                                    <p class="mb-0 text-muted small">
+                                                        {% if conv.last_message.sender == request.user %}
+                                                            You: 
+                                                        {% endif %}
+                                                        {{ conv.last_message.content|truncatewords:10 }}
+                                                    </p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <small class="text-muted">{{ conv.last_message.timestamp|timesince }} ago</small>
+                                                    {% if conv.unread_count > 0 %}
+                                                        <span class="badge bg-primary rounded-pill d-block mt-1">
+                                                            {{ conv.unread_count }}
+                                                        </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-comment-slash fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No messages yet</h5>
+                            <p class="text-muted">Start a conversation by visiting a user's profile and clicking the message button.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

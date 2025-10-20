@@ -521,10 +521,10 @@
                             <i class="fas fa-user-plus"></i>
                             Add Friend
                         </button>
-                        <button class="btn-profile-action btn-secondary-profile">
+                        <a href="{% url 'chat:start_conversation' profile_user.id %}" class="btn-profile-action btn-secondary-profile" style="text-decoration: none;">
                             <i class="fas fa-comment"></i>
                             Message
-                        </button>
+                        </a>
                     {% endif %}
                 </div>
             </div>

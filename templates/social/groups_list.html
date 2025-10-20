@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Groups - GreenLink{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="fas fa-users me-2 text-primary"></i>
+                        Campus Groups
+                    </h2>
+                    <p class="text-muted mb-0">Join groups and connect with students who share your interests</p>
+                </div>
+                <button class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>
+                    Create Group
+                </button>
+            </div>
+            
+            <!-- Filter Tabs -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-compass me-1"></i>
+                                Discover
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-user-friends me-1"></i>
+                                Your Groups
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-star me-1"></i>
+                                Popular
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Groups Grid -->
+            <div class="row">
+                <!-- Sample Group 1 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <div class="bg-primary text-white rounded d-flex align-items-center justify-content-center" 
+                                     style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="fas fa-code fa-2x"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-1">Coding Club</h5>
+                                    <p class="text-muted small mb-0">
+                                        <i class="fas fa-users me-1"></i>
+                                        245 members
+                                    </p>
+                                </div>
+                                <span class="badge bg-success">Active</span>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-3">
+                                Learn programming, share projects, and participate in coding competitions. All skill levels welcome!
+                            </p>
+                            
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark">Programming</span>
+                                <span class="badge bg-light text-dark">Technology</span>
+                                <span class="badge bg-light text-dark">Competitions</span>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100">
+                                Join Group
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample Group 2 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <div class="bg-success text-white rounded d-flex align-items-center justify-content-center" 
+                                     style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="fas fa-leaf fa-2x"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-1">Environmental Club</h5>
+                                    <p class="text-muted small mb-0">
+                                        <i class="fas fa-users me-1"></i>
+                                        178 members
+                                    </p>
+                                </div>
+                                <span class="badge bg-success">Active</span>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-3">
+                                Make a difference! Join us in campus cleanup drives, tree planting, and sustainability initiatives.
+                            </p>
+                            
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark">Environment</span>
+                                <span class="badge bg-light text-dark">Volunteering</span>
+                                <span class="badge bg-light text-dark">Social</span>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100">
+                                Join Group
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample Group 3 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <div class="bg-danger text-white rounded d-flex align-items-center justify-content-center" 
+                                     style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="fas fa-camera fa-2x"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-1">Photography Club</h5>
+                                    <p class="text-muted small mb-0">
+                                        <i class="fas fa-users me-1"></i>
+                                        156 members
+                                    </p>
+                                </div>
+                                <span class="badge bg-success">Active</span>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-3">
+                                Capture moments, share your vision, and improve your photography skills with fellow enthusiasts.
+                            </p>
+                            
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark">Photography</span>
+                                <span class="badge bg-light text-dark">Art</span>
+                                <span class="badge bg-light text-dark">Creative</span>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100">
+                                Join Group
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample Group 4 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <div class="bg-warning text-white rounded d-flex align-items-center justify-content-center" 
+                                     style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="fas fa-book fa-2x"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-1">Book Club</h5>
+                                    <p class="text-muted small mb-0">
+                                        <i class="fas fa-users me-1"></i>
+                                        92 members
+                                    </p>
+                                </div>
+                                <span class="badge bg-success">Active</span>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-3">
+                                Read, discuss, and discover new books together. Monthly meetings and reading challenges!
+                            </p>
+                            
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark">Reading</span>
+                                <span class="badge bg-light text-dark">Literature</span>
+                                <span class="badge bg-light text-dark">Discussion</span>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100">
+                                Join Group
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample Group 5 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <div class="bg-info text-white rounded d-flex align-items-center justify-content-center" 
+                                     style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="fas fa-running fa-2x"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-1">Fitness & Sports</h5>
+                                    <p class="text-muted small mb-0">
+                                        <i class="fas fa-users me-1"></i>
+                                        310 members
+                                    </p>
+                                </div>
+                                <span class="badge bg-success">Active</span>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-3">
+                                Stay fit and active! Join group workouts, sports tournaments, and wellness activities.
+                            </p>
+                            
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark">Fitness</span>
+                                <span class="badge bg-light text-dark">Sports</span>
+                                <span class="badge bg-light text-dark">Health</span>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100">
+                                Join Group
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample Group 6 -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex align-items-start gap-3 mb-3">
+                                <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" 
+                                     style="width: 60px; height: 60px; flex-shrink: 0;">
+                                    <i class="fas fa-music fa-2x"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-1">Music Society</h5>
+                                    <p class="text-muted small mb-0">
+                                        <i class="fas fa-users me-1"></i>
+                                        134 members
+                                    </p>
+                                </div>
+                                <span class="badge bg-success">Active</span>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-3">
+                                Express yourself through music! Jam sessions, performances, and music appreciation events.
+                            </p>
+                            
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="badge bg-light text-dark">Music</span>
+                                <span class="badge bg-light text-dark">Performance</span>
+                                <span class="badge bg-light text-dark">Creative</span>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100">
+                                Join Group
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
