@@ -44,8 +44,8 @@ class CustomUser(AbstractUser):
         unique=True,
         validators=[
             RegexValidator(
-                regex=r'^\d{9}@(student\.)?green\.edu\.bd$',
-                message='Must be a valid Green University email (format: 123456789@student.green.edu.bd or 123456789@green.edu.bd)'
+                regex=r'^\d{9}@student\.green\.ac\.bd$',
+                message='Must be a valid Green University email (format: 123456789@student.green.ac.bd)'
             )
         ]
     )
@@ -124,7 +124,7 @@ class CustomUser(AbstractUser):
         # Ensure email matches student ID
         if self.student_id and not self.email.startswith(self.student_id):
             if not self.email:
-                self.email = f"{self.student_id}@student.green.edu.bd"
+                self.email = f"{self.student_id}@student.green.ac.bd"
         
         super().save(*args, **kwargs)
     

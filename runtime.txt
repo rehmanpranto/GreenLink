@@ -1,0 +1,2 @@
+# Runtime for Heroku deployment
+python-3.11.6

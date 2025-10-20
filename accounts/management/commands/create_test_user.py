@@ -10,8 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Check if test user already exists
-        if User.objects.filter(email='202310001@student.green.edu.bd').exists():
-            user = User.objects.get(email='202310001@student.green.edu.bd')
+        if User.objects.filter(email='202310001@student.green.ac.bd').exists():
+            user = User.objects.get(email='202310001@student.green.ac.bd')
             self.stdout.write(
                 self.style.WARNING('Test user already exists!')
             )
@@ -19,7 +19,7 @@ class Command(BaseCommand):
             # Create test user
             user = User.objects.create_user(
                 username='202310001',
-                email='202310001@student.green.edu.bd',
+                email='202310001@student.green.ac.bd',
                 password='greenlink123',
                 first_name='Ahmed',
                 last_name='Rahman',
@@ -82,7 +82,7 @@ class Command(BaseCommand):
         self.stdout.write(
             self.style.SUCCESS('='*50)
         )
-        self.stdout.write(f'Email: 202310001@student.green.edu.bd')
+        self.stdout.write(f'Email: 202310001@student.green.ac.bd')
         self.stdout.write(f'Password: greenlink123')
         self.stdout.write(f'Name: {user.first_name} {user.last_name}')
         self.stdout.write(f'Student ID: {user.student_id}')

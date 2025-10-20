@@ -1,11 +1,27 @@
+# GreenLink Development Requirements
+# Install with: pip install -r requirements.txt
+
+# Core Django Framework
 Django==4.2.7
+
+# Image Processing
 Pillow==10.0.1
+
+# Form Handling & UI
 django-crispy-forms==2.0
 crispy-bootstrap5==0.7
+django-widget-tweaks==1.5.0
+
+# Real-time Features
 channels==4.0.0
 channels-redis==4.1.0
+
+# API & CORS Support
 django-cors-headers==4.3.1
+
+# Configuration Management
 python-decouple==3.8
+
+# Production Server (for local testing)
 gunicorn==21.2.0
 whitenoise==6.6.0
-django-widget-tweaks==1.5.0

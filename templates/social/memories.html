@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Memories - GreenLink{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/facebook_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-clock me-2"></i>Memories</h2>
+                <div class="btn-group">
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-calendar-day"></i> Today
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-calendar-week"></i> This Week
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-calendar-alt"></i> This Month
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Memories Timeline -->
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="text-center py-5">
+                        <i class="fas fa-clock fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">Your Memories</h4>
+                        <p class="text-muted">Look back on your posts, photos, and moments from the past.</p>
+                        
+                        <!-- Sample Memory Cards -->
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-4">
+                                <div class="card memory-card">
+                                    <div class="card-header">
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock me-1"></i>
+                                            One year ago today
+                                        </small>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="memory-placeholder">
+                                            <i class="fas fa-images fa-3x text-muted mb-3"></i>
+                                            <p class="text-muted">Your memories will appear here</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="card memory-card">
+                                    <div class="card-header">
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock me-1"></i>
+                                            Six months ago
+                                        </small>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="memory-placeholder">
+                                            <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+                                            <p class="text-muted">Academic milestones and achievements</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-search me-2"></i>Browse All Memories
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+.memory-card {
+    transition: transform 0.2s ease;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.memory-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.memory-placeholder {
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    border: 2px dashed #dee2e6;
+}
+</style>
+{% endblock %}

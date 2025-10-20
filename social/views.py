@@ -5,42 +5,91 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.utils import timezone
+from datetime import timedelta
 from .models import (
-    Post, PostLike, Comment, Follow, Hashtag, Experience, 
-    Education, Skill, UserSkill, Connection, StudyGroup, Notification
+    Post, PostLike, PostReaction, Comment, Follow, Hashtag, Experience, 
+    Education, Skill, UserSkill, Connection, StudyGroup, Notification,
+    Story, Group, Event, FriendRequest, Friendship
 )
 
 User = get_user_model()
 
 @login_required
-def feed(request):
-    """Display social feed with Twitter-like posts"""
-    # Get posts from followed users and own posts
+def facebook_feed(request):
+    """Modern Facebook-like feed with stories, posts, and sidebar content"""
+    # Get posts from friends and followed users
+    friends = get_user_friends(request.user)
     following_users = request.user.following.values_list('following', flat=True)
-    posts = Post.objects.filter(
-        Q(author__in=following_users) | Q(author=request.user),
-        is_public=True
-    ).select_related('author').prefetch_related('likes', 'comments')
+    all_connections = list(set(list(friends) + list(following_users)))
     
-    # Pagination
-    paginator = Paginator(posts, 10)
+    posts = Post.objects.filter(
+        Q(author__in=all_connections) | Q(author=request.user),
+        is_public=True
+    ).select_related('author').prefetch_related(
+        'reactions', 'comments__author', 'tagged_users'
+    ).order_by('-created_at')
+    
+    # Get active stories (last 24 hours)
+    yesterday = timezone.now() - timedelta(hours=24)
+    active_stories = Story.objects.filter(
+        author__in=all_connections,
+        created_at__gte=yesterday
+    ).select_related('author').order_by('-created_at')
+    
+    # Friend requests
+    friend_requests = FriendRequest.objects.filter(
+        receiver=request.user,
+        status='pending'
+    ).select_related('sender').order_by('-created_at')[:5]
+    
+    # Online friends (simulate with recent activity)
+    recent_active = timezone.now() - timedelta(minutes=30)
+    online_friends = User.objects.filter(
+        id__in=friends,
+        last_active__gte=recent_active
+    )[:10]
+    
+    # Upcoming events
+    upcoming_events = Event.objects.filter(
+        start_datetime__gte=timezone.now(),
+        attendees=request.user
+    ).order_by('start_datetime')[:5]
+    
+    # Suggested groups
+    user_groups = request.user.joined_social_groups.values_list('id', flat=True)
+    suggested_groups = Group.objects.exclude(
+        id__in=user_groups
+    ).filter(group_type='public').order_by('-members_count')[:5]
+    
+    # Pagination for posts
+    paginator = Paginator(posts, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
-    # Trending hashtags
-    trending_hashtags = Hashtag.objects.order_by('-usage_count')[:10]
-    
-    # Suggested connections
-    suggested_users = User.objects.exclude(
-        id__in=following_users
-    ).exclude(id=request.user.id)[:5]
+    # Add user reaction info to posts
+    for post in page_obj:
+        try:
+            user_reaction = post.reactions.filter(user=request.user).first()
+            post.user_reaction_type = user_reaction.reaction_type if user_reaction else None
+        except:
+            post.user_reaction_type = None
     
     context = {
         'posts': page_obj,
-        'trending_hashtags': trending_hashtags,
-        'suggested_users': suggested_users,
+        'active_stories': active_stories,
+        'friend_requests': friend_requests,
+        'online_friends': online_friends,
+        'upcoming_events': upcoming_events,
+        'suggested_groups': suggested_groups,
     }
-    return render(request, 'social/feed.html', context)
+    return render(request, 'social/facebook_feed.html', context)
+
+def get_user_friends(user):
+    """Get all friends of a user"""
+    friendships1 = Friendship.objects.filter(user1=user).values_list('user2', flat=True)
+    friendships2 = Friendship.objects.filter(user2=user).values_list('user1', flat=True)
+    return list(set(list(friendships1) + list(friendships2)))
 
 @login_required
 def create_post(request):
@@ -48,25 +97,35 @@ def create_post(request):
     if request.method == 'POST':
         content = request.POST.get('content')
         post_type = request.POST.get('post_type', 'post')
-        image = request.FILES.get('image')
+        images = request.FILES.getlist('images')  # Handle multiple images
         
-        if content:
+        if content or images:
             post = Post.objects.create(
                 author=request.user,
                 content=content,
-                post_type=post_type,
-                image=image
+                post_type=post_type
             )
             
-            # Update user's post count
-            request.user.posts_count += 1
-            request.user.save()
+            # Handle multiple images
+            if images:
+                image_urls = []
+                for image in images:
+                    # For now, just store the first image in the image field
+                    if not post.image:
+                        post.image = image
+                        post.save()
+                    # Store all image URLs in the images JSONField
+                    image_urls.append(image.url if hasattr(image, 'url') else str(image))
+                
+                if image_urls:
+                    post.images = image_urls
+                    post.save()
             
             messages.success(request, 'Post created successfully!')
         else:
             messages.error(request, 'Post content cannot be empty.')
     
-    return redirect('social:feed')
+    return redirect('social:facebook_feed')
 
 @login_required
 def like_post(request, post_id):
@@ -212,18 +271,6 @@ def send_connection_request(request, user_id):
             messages.success(request, 'Connection request sent successfully!')
     
     return redirect('social:professional_profile', user_id=user_id)
-
-@login_required
-def study_groups(request):
-    """View and manage study groups"""
-    groups = StudyGroup.objects.filter(is_public=True).order_by('-created_at')
-    my_groups = request.user.study_groups.all()
-    
-    context = {
-        'groups': groups,
-        'my_groups': my_groups,
-    }
-    return render(request, 'social/study_groups.html', context)
 
 @login_required
 def trending_hashtags(request):

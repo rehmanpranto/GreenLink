@@ -39,7 +39,7 @@
                         </div>
                     {% endif %}
                     <div class="form-text">
-                        Use your Green University email (123456789@student.green.edu.bd)
+                        Use your Green University email (123456789@student.green.ac.bd)
                     </div>
                 </div>
                 
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (emailInput) {
         emailInput.addEventListener('input', function() {
             const email = this.value;
-            const isValid = /^\d{9}@(student\.)?green\.edu\.bd$/.test(email);
+            const isValid = /^\d{9}@student\.green\.ac\.bd$/.test(email);
             
             if (email && !isValid) {
                 this.classList.add('is-invalid');

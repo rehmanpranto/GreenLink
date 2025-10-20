@@ -5,11 +5,8 @@ from accounts.models import CustomUser
 
 @login_required
 def dashboard(request):
-    """Main dashboard for students"""
-    return render(request, 'profiles/dashboard.html', {
-        'user': request.user,
-        'university_name': 'Green University of Bangladesh'
-    })
+    """Main dashboard for students - redirect to Facebook-style feed"""
+    return redirect('social:facebook_feed')
 
 @login_required  
 def profile_detail(request, pk):

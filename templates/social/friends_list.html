@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Friends - GreenLink{% endblock %}
+
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/facebook_style.css' %}">
+{% endblock %}
+
+{% block extra_css %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-user-friends me-2"></i>Friends</h2>
+                <a href="{% url 'social:find_friends' %}" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-2"></i>Find Friends
+                </a>
+            </div>
+            
+            <!-- Friends List -->
+            <div class="row">
+                {% for friend in friends %}
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card friend-card">
+                        <div class="card-body text-center">
+                            {% if friend.profile_picture %}
+                            <img src="{{ friend.profile_picture.url }}" class="rounded-circle mb-3" width="80" height="80" alt="{{ friend.get_display_name }}">
+                            {% else %}
+                            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-user fa-2x text-white"></i>
+                            </div>
+                            {% endif %}
+                            <h6 class="card-title mb-2">{{ friend.get_display_name }}</h6>
+                            {% if friend.department %}
+                            <p class="card-text text-muted small">{{ friend.department }}</p>
+                            {% endif %}
+                            <div class="btn-group w-100" role="group">
+                                <button type="button" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-comment"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-user-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <i class="fas fa-user-friends fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No friends yet</h4>
+                        <p class="text-muted">Connect with classmates and colleagues to build your network.</p>
+                        <a href="{% url 'social:find_friends' %}" class="btn btn-primary">Find Friends</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+.friend-card {
+    transition: transform 0.2s ease;
+}
+
+.friend-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock %}

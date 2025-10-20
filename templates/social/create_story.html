@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create Story - GreenLink{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/facebook_style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-plus-circle me-2"></i>Create Your Story</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <!-- Story Type Selection -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="story-type-card text-center p-4 border rounded" data-type="photo">
+                                    <i class="fas fa-camera fa-3x text-primary mb-3"></i>
+                                    <h5>Photo Story</h5>
+                                    <p class="text-muted">Share a photo with your story</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="story-type-card text-center p-4 border rounded" data-type="text">
+                                    <i class="fas fa-font fa-3x text-success mb-3"></i>
+                                    <h5>Text Story</h5>
+                                    <p class="text-muted">Share thoughts with text</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Photo Upload Section -->
+                        <div id="photo-section" class="mb-4" style="display: none;">
+                            <label for="story-image" class="form-label">Upload Photo</label>
+                            <input type="file" class="form-control" id="story-image" name="image" accept="image/*">
+                            <div class="mt-3">
+                                <img id="image-preview" src="#" alt="Preview" class="img-fluid rounded" style="display: none; max-height: 300px;">
+                            </div>
+                        </div>
+                        
+                        <!-- Text Section -->
+                        <div id="text-section" class="mb-4">
+                            <label for="story-content" class="form-label">Story Content</label>
+                            <textarea class="form-control" id="story-content" name="content" rows="5" placeholder="What's on your mind?"></textarea>
+                        </div>
+                        
+                        <!-- Privacy Settings -->
+                        <div class="mb-4">
+                            <label for="privacy" class="form-label">Who can see this?</label>
+                            <select class="form-select" id="privacy" name="privacy">
+                                <option value="public">Public</option>
+                                <option value="friends" selected>Friends</option>
+                                <option value="private">Only Me</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Submit Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'social:feed' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-share me-2"></i>Share Story
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+.story-type-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-type-card:hover {
+    background-color: var(--bs-light);
+    transform: translateY(-2px);
+}
+
+.story-type-card.active {
+    border-color: var(--bs-primary) !important;
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const storyTypeCards = document.querySelectorAll('.story-type-card');
+    const photoSection = document.getElementById('photo-section');
+    const textSection = document.getElementById('text-section');
+    const imageInput = document.getElementById('story-image');
+    const imagePreview = document.getElementById('image-preview');
+    
+    // Story type selection
+    storyTypeCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Remove active class from all cards
+            storyTypeCards.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked card
+            this.classList.add('active');
+            
+            const type = this.dataset.type;
+            if (type === 'photo') {
+                photoSection.style.display = 'block';
+                textSection.style.display = 'block';
+            } else {
+                photoSection.style.display = 'none';
+                textSection.style.display = 'block';
+            }
+        });
+    });
+    
+    // Image preview
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.style.display = 'none';
+        }
+    });
+    
+    // Set default to text story
+    document.querySelector('[data-type="text"]').click();
+});
+</script>
+{% endblock %}

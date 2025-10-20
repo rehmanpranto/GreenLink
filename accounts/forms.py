@@ -39,7 +39,7 @@ class GreenUniversityRegistrationForm(UserCreationForm):
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={
             'class': 'form-control',
-            'placeholder': '123456789@student.green.edu.bd'
+            'placeholder': '123456789@student.green.ac.bd'
         })
     )
     
@@ -130,8 +130,8 @@ class GreenUniversityRegistrationForm(UserCreationForm):
         student_id = self.cleaned_data.get('student_id')
         
         # Check if email follows Green University format
-        if not re.match(r'^\d{9}@(student\.)?green\.edu\.bd$', email):
-            raise ValidationError('Email must be in Green University format (123456789@student.green.edu.bd)')
+        if not re.match(r'^\d{9}@student\.green\.ac\.bd$', email):
+            raise ValidationError('Email must be in Green University format (123456789@student.green.ac.bd)')
         
         # Check if email matches student ID
         if student_id and not email.startswith(student_id):
@@ -185,7 +185,7 @@ class GreenUniversityLoginForm(AuthenticationForm):
         username = self.cleaned_data.get('username')
         
         # Check if it's a Green University email
-        if not re.match(r'^\d{9}@(student\.)?green\.edu\.bd$', username):
+        if not re.match(r'^\d{9}@student\.green\.ac\.bd$', username):
             raise ValidationError('Please use your Green University email address.')
         
         return username

@@ -1,193 +1,152 @@
-# GreenLink
+# GreenLink - Campus Social Network
 
-**Green Unive### Key Features
-- 🔐 **Secure Authentication**: Custom user model with Green University email validation
-- 👥 **Student Verification**: 9-digit student ID validation system
-- 💬 **Re## 🌟 Features Overviewl-time Chat**: Messaging system for student communication
-- 📅 **Event Management**: Create and discover campus events and activities
-- 🎨 **Sage Green Theme**: Beautiful sage green color scheme (#8BC4A7) reflecting nature
-- 📱 **Mobile Responsive**: Bootstrap-based responsive designonnection Platform**
+A modern, Facebook-style social networking platform designed specifically for university campuses, built with Django and featuring real-time interactions, multimedia sharing, and comprehensive campus life management.
 
-A modern, secure, and user-friendly campus social platform for Green University of Bangladesh students. Built with Django, Bootstrap, and modern web technologies to connect students across campus.
+## 🌟 Overview
 
-## 🚀 Features
+GreenLink transforms the traditional campus experience by providing students with a comprehensive social platform that combines the best features of Facebook, Twitter, and LinkedIn, all tailored specifically for university life.
 
-### 🐦 Twitter-like Social Features
-- **News Feed**: Real-time social feed with posts from followed classmates
-- **Post Types**: Regular posts, project showcases, achievements, job updates, academic news
-- **Engagement**: Like, comment, share, and bookmark posts
-- **Hashtags**: Trending topics and hashtag discovery
-- **Following System**: Follow/unfollow classmates with follower counts
-- **Character Limit**: Twitter-style 2200 character limit with live counter
-- **Media Sharing**: Photo and document attachments
+## 🏗️ Project Structure - Campus Social Network
 
-### 💼 LinkedIn-like Professional Features
-- **Professional Profiles**: Detailed academic and professional profiles
-- **Experience Section**: Internships, jobs, volunteer work, projects
-- **Education History**: Academic background and achievements
-- **Skills & Endorsements**: Skill listings with peer endorsements
-- **Professional Connections**: Send and manage connection requests
-- **Study Groups**: Academic collaboration and group formation
-- **Career Updates**: Job postings and career milestone sharing
+# GreenLink - Campus Social Network
 
-### 🎓 University-Specific Features
-- **Student Authentication**: Secure login with Green University email validation
-- **Department Integration**: Department-wise networking and content filtering
-- **Batch Connections**: Connect with classmates from same admission batch
-- **Academic Calendar**: Campus events and academic deadlines
-- **GPA Tracking**: Academic performance sharing (optional)
-- **Course Integration**: Course-specific study groups and discussions
+A modern, Facebook-style social networking platform designed specifically for university campuses, built with Django and featuring real-time interactions, multimedia sharing, and comprehensive campus life management.
 
-### 🔔 Engagement & Notifications
-- **Real-time Notifications**: Instant alerts for likes, comments, follows, connections
-- **Smart Suggestions**: AI-powered classmate and connection recommendations
-- **Trending Content**: Popular hashtags and topics within university
-- **Activity Feed**: Comprehensive activity tracking and analytics
+## � Overview
 
-## 📱 Pages & Features
+GreenLink transforms the traditional campus experience by providing students with a comprehensive social platform that combines the best features of Facebook, Twitter, and LinkedIn, all tailored specifically for university life.
 
-### Core Pages
-- **Dashboard (/)**: Personalized student dashboard with quick stats and navigation
-- **Profile (/profile)**: Detailed student profiles with academic information
-- **Social Feed (/social)**: Campus-wide social networking and post sharing
-- **Messages (/chat)**: Real-time messaging system for student communication
-- **Events (/events)**: Campus event discovery and creation platform
-- **Authentication**: Secure login/registration with Green University email validation
-
-### Key Features
-- 🔐 **Secure Authentication**: Custom user model with Green University email validation
-- � **Student Verification**: 9-digit student ID validation system
-- � **Real-time Chat**: Messaging system for student communication
-- � **Event Management**: Create and discover campus events and activities
-- � **Green Theme**: Forest green color scheme reflecting university branding
-- 📱 **Mobile Responsive**: Bootstrap-based responsive design
-
-## 🛠️ Tech Stack
-
-### Backend
-- **Django 4.2.7** - Python web framework
-- **SQLite** - Database for development
-- **Pillow** - Image processing for profile pictures
-- **Django Crispy Forms** - Enhanced form rendering
-
-### Frontend
-- **Bootstrap 5** - CSS framework for responsive design
-- **Font Awesome** - Icon library
-- **JavaScript** - Client-side interactivity
-
-### Dependencies
-- **django-crispy-forms** - Enhanced form rendering
-- **crispy-bootstrap5** - Bootstrap 5 integration for forms
-- **django-widget-tweaks** - Template form field customization
-
-## 📁 Project Structure
+## �🏗️ Project Structure
 
 ```
-greenlink/
-├── green_university_campus/       # Main Django project
-│   ├── settings.py                # Project settings
-│   ├── urls.py                    # URL routing
-│   └── wsgi.py                    # WSGI configuration
-├── accounts/                      # Authentication app
-│   ├── models.py                 # Custom user model
-│   ├── views.py                  # Authentication views
-│   ├── forms.py                  # Login/registration forms
-│   └── urls.py                   # Auth URL patterns
-├── profiles/                     # Student profiles app
-│   ├── models.py                # Profile models
-│   ├── views.py                 # Profile views
-│   └── urls.py                  # Profile URL patterns
-├── social/                      # Social networking app
-│   ├── models.py               # Post/feed models
-│   ├── views.py                # Social views
-│   └── urls.py                 # Social URL patterns
-├── chat/                       # Messaging app
-│   ├── models.py              # Message models
-│   ├── views.py               # Chat views
-│   └── urls.py                # Chat URL patterns
-├── events/                     # Events app
-│   ├── models.py              # Event models
-│   ├── views.py               # Event views
-│   └── urls.py                # Event URL patterns
-├── templates/                  # HTML templates
-│   ├── base.html              # Base template
-│   ├── accounts/              # Authentication templates
-│   ├── profiles/              # Profile templates
-│   ├── social/                # Social templates
-│   ├── chat/                  # Chat templates
-│   └── events/                # Event templates
-├── static/                     # Static files
-│   └── css/                   # Custom CSS
-├── manage.py                   # Django management script
-└── requirements.txt            # Python dependencies
+campuslink-working/
+├── 📁 accounts/           # User authentication & management
+├── 📁 chat/              # Real-time messaging system
+├── 📁 events/            # Campus events & activities
+├── 📁 green_university_campus/  # Main Django project settings
+├── 📁 home/              # Landing pages & public content
+├── 📁 profiles/          # User profiles & dashboards
+├── 📁 social/            # Core social networking features
+├── 📁 static/            # CSS, JavaScript, images
+├── 📁 templates/         # HTML templates
+├── 📁 docs/              # Project documentation
+├── 📄 manage.py          # Django management script
+├── 📄 run_webapp.py      # One-click setup and run script
+├── 📄 start_greenlink.bat # Windows batch file launcher
+├── 📄 start_greenlink.sh # Linux/Mac shell script launcher
+├── 📄 requirements.txt   # Development dependencies
+├── 📄 requirements-production.txt  # Production dependencies
+├── 📄 Procfile           # Deployment configuration
+├── 📄 runtime.txt        # Python version specification
+└── 📄 db.sqlite3         # Local development database
 ```
 
-## 🎨 Design System
+## ✨ Key Features
 
-### Green University Theme
-The application uses Green University's branding colors defined in `static/css/green_university.css`:
+### 🎭 Facebook-Style Interface
+- **Modern Three-Column Layout**: Stories, main feed, and sidebar navigation
+- **Real-Time Reactions**: Like, Love, Laugh, Wow, Sad, Angry with emoji support
+- **Interactive Comments**: AJAX-powered comment system with instant updates
+- **Post Composer**: Rich text editor with image upload support
+- **Stories Feature**: Create and view temporary story content
 
-```css
-/* Green University Colors */
---green-primary: #8BC4A7;    /* Sage Green */
---green-secondary: #A8D5BA;  /* Light Sage */
---green-accent: #6FA88A;     /* Darker Sage */
---green-light: #C8E6D0;      /* Very Light Sage */
---green-dark: #4A8068;       /* Dark Sage */
+### 📱 Social Networking
+- **User Profiles**: Comprehensive profile management with photos and info
+- **Friend System**: Send/accept friend requests and manage connections
+- **Groups**: Join and create study groups and interest communities
+- **News Feed**: Personalized content feed with engagement metrics
+- **Notifications**: Real-time updates for interactions and activities
+
+### 🎓 Campus-Specific Features
+- **Academic Integration**: Department, batch, and course information
+- **Event Management**: Campus events, workshops, and activities
+- **Study Groups**: Academic collaboration and study sessions
+- **Marketplace**: Buy/sell textbooks and campus resources
+- **Student Authentication**: Green University email validation system
+
+### 🛠️ Technical Features
+- **Responsive Design**: Mobile-first approach with adaptive layouts
+- **AJAX Interactions**: Seamless user experience without page reloads
+- **Image Handling**: Secure file uploads with validation
+- **Authentication**: Complete user registration and login system
+- **Database Optimization**: Efficient queries with proper relationships
+
+## 🚀 Quick Start
+
+### 🌟 **One-Click Setup (Recommended)**
+
+Choose your preferred method to run GreenLink:
+
+#### Option 1: Python Script (All Platforms)
+```bash
+python run_webapp.py
 ```
 
-### UI Components
-- Bootstrap 5 responsive grid system
-- Custom green-themed components
-- Font Awesome icons
-- Crispy forms for enhanced form rendering
+#### Option 2: Windows Batch File
+Double-click `start_greenlink.bat` or run:
+```cmd
+start_greenlink.bat
+```
 
-### Authentication System
-- Custom user model with Green University validation
-- Email format: `123456789@student.green.edu.bd`
-- 9-digit student ID validation
-- Department and batch tracking
-- Profile picture support
+#### Option 3: Linux/Mac Shell Script
+```bash
+chmod +x start_greenlink.sh
+./start_greenlink.sh
+```
 
-## 🚀 Getting Started
+**All scripts will automatically:**
+- ✅ Check Python version compatibility
+- ✅ Create virtual environment
+- ✅ Install all dependencies
+- ✅ Set up environment configuration
+- ✅ Run database migrations
+- ✅ Collect static files
+- ✅ Offer to create admin user
+- ✅ Start the development server
+- ✅ Open your browser to the application
 
-### Prerequisites
-- Python 3.8+
-- pip (Python package manager)
+### 📋 **Manual Setup**
 
-### Installation
+If you prefer manual setup:
 
-1. **Clone the repository** (or use the existing directory)
+#### Prerequisites
+- Python 3.11+
+- Django 4.2.7
+- Virtual environment support
+
+#### Installation
+
+1. **Clone the repository**
    ```bash
+   git clone <repository-url>
    cd campuslink-working
    ```
 
 2. **Create virtual environment**
    ```bash
    python -m venv .venv
+   .venv\Scripts\activate  # Windows
+   # source .venv/bin/activate  # Linux/Mac
    ```
 
-3. **Activate virtual environment**
-   ```bash
-   # Windows
-   .venv\Scripts\activate
-   
-   # macOS/Linux
-   source .venv/bin/activate
-   ```
-
-4. **Install dependencies**
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. **Apply database migrations**
+4. **Configure environment**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
+
+5. **Run migrations**
    ```bash
    python manage.py makemigrations
    python manage.py migrate
    ```
 
-6. **Create a superuser** (optional)
+6. **Create superuser**
    ```bash
    python manage.py createsuperuser
    ```
@@ -197,99 +156,189 @@ The application uses Green University's branding colors defined in `static/css/g
    python manage.py runserver
    ```
 
-8. **Open your browser**
-   Navigate to `http://127.0.0.1:8000`
+8. **Access the application**
+   - Development: http://127.0.0.1:8000
+   - Admin Panel: http://127.0.0.1:8000/admin
 
-### Available Django Commands
+## 📦 Dependencies
 
-- `python manage.py runserver` - Start development server
-- `python manage.py makemigrations` - Create database migrations
-- `python manage.py migrate` - Apply database migrations
-- `python manage.py createsuperuser` - Create admin user
-- `python manage.py collectstatic` - Collect static files for production
+### Core Framework
+- **Django 4.2.7**: Web framework
+- **Pillow 10.0.1**: Image processing
+- **Channels 4.0.0**: WebSocket support for real-time features
+
+### UI/UX Libraries
+- **django-crispy-forms 2.0**: Beautiful form rendering
+- **crispy-bootstrap5 0.7**: Bootstrap 5 integration
+- **django-widget-tweaks 1.5.0**: Form widget customization
+
+### Production Dependencies
+- **gunicorn 21.2.0**: WSGI HTTP Server
+- **whitenoise 6.6.0**: Static file serving
+- **python-decouple 3.8**: Environment configuration
+- **django-cors-headers 4.3.1**: CORS handling
+
+## 🎨 Design System
+
+### Color Palette
+```css
+--green-primary: #8BC4A7      /* Primary brand color */
+--green-secondary: #A8D5BA    /* Secondary accents */
+--green-accent: #6FA88A       /* Interactive elements */
+--facebook-blue: #1877F2      /* Facebook-style blue */
+--white: #FFFFFF              /* Clean backgrounds */
+--light-gray: #F8F9FA         /* Subtle backgrounds */
+```
+
+### Typography
+- **Primary Font**: Inter (modern, readable)
+- **Heading Font**: Poppins (friendly, approachable)
+- **Icon Library**: Font Awesome 6.4.0
 
 ## 🔧 Configuration
 
 ### Environment Variables
-Create a `.env` file in the project root for sensitive settings:
 ```env
-SECRET_KEY=your-secret-key-here
+SECRET_KEY=your-secret-key
 DEBUG=True
-DATABASE_URL=sqlite:///db.sqlite3
+ALLOWED_HOSTS=localhost,127.0.0.1
+DATABASE_URL=your-database-url  # For production
 ```
 
-### Django Settings
-Key settings in `green_university_campus/settings.py`:
-- Custom user model: `accounts.CustomUser`
-- Green University specific configurations
-- Bootstrap 5 and Font Awesome integration
-- Media and static files handling
+### Database Configuration
+- **Development**: SQLite3 (included)
+- **Production**: PostgreSQL (recommended)
 
-### User Registration Requirements
-- Valid Green University email format: `123456789@student.green.edu.bd`
-- 9-digit student ID (must be unique)
-- Department and batch information
-- Email verification system ready for implementation
+## 📱 App Architecture
 
-## � Features Overview
+### accounts/
+- User registration and authentication
+- Custom user model with campus-specific fields
+- Email verification and password reset
 
-### Authentication System
-- Secure registration with Green University email validation
-- 9-digit student ID verification system
-- Department and batch information tracking
-- Profile picture upload support
+### social/
+- Core social networking functionality
+- Posts, comments, reactions, and sharing
+- Friend requests and connections
+- Facebook-style feed with AJAX interactions
 
-### Social Features
-- Campus-wide social feed for sharing posts
-- Student profile discovery and connections
+### profiles/
+- User profile management
+- Dashboard with activity overview
+- Privacy settings and preferences
+
+### chat/
 - Real-time messaging system
-- Event creation and discovery platform
+- WebSocket support for instant communication
+- Group chats and direct messages
 
-### User Experience
-- Mobile-responsive Bootstrap design
-- Beautiful sage green themed interface (#8BC4A7)
-- Intuitive navigation and user flows
-- Admin panel for platform management
+### events/
+- Campus event management
+- Event creation, registration, and notifications
+- Calendar integration
 
-## 🔮 Future Enhancements
+### home/
+- Landing pages for anonymous users
+- Public information and onboarding
 
-### Planned Features
-- Real-time chat with WebSocket integration
-- Advanced search and filtering
-- File sharing in messages
-- Event RSVP and notifications
-- Study group formation tools
-- Academic calendar integration
+## 🎯 Usage Examples
 
-### Technical Improvements
-- PostgreSQL database for production
-- Redis caching for better performance
-- Celery for background tasks
-- Email notification system
-- API endpoints for mobile app integration
+### Creating a Post
+```javascript
+// AJAX post creation with image upload
+function createPost(content, images) {
+    const formData = new FormData();
+    formData.append('content', content);
+    images.forEach(image => formData.append('images', image));
+    
+    fetch('/social/post/create/', {
+        method: 'POST',
+        body: formData,
+        headers: {'X-CSRFToken': getCookie('csrftoken')}
+    }).then(response => response.json())
+      .then(data => updateFeed(data));
+}
+```
 
-## 📄 License
+### Reacting to Posts
+```javascript
+// Facebook-style reactions
+function reactToPost(postId, reactionType) {
+    fetch(`/social/react/${postId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({reaction: reactionType})
+    }).then(response => response.json())
+      .then(data => updateReactionDisplay(data));
+}
+```
 
-This project is built for educational purposes for Green University of Bangladesh students.
+## 🚀 Deployment
+
+### Production Setup
+1. **Set environment variables**
+   ```bash
+   export SECRET_KEY="your-production-secret-key"
+   export DEBUG=False
+   export DATABASE_URL="postgresql://..."
+   ```
+
+2. **Install production dependencies**
+   ```bash
+   pip install -r requirements-production.txt
+   ```
+
+3. **Configure static files**
+   ```bash
+   python manage.py collectstatic
+   ```
+
+4. **Run migrations**
+   ```bash
+   python manage.py migrate
+   ```
+
+### Deployment Platforms
+- **Heroku**: Ready with Procfile
+- **Railway**: Database and static file configuration included
+- **DigitalOcean**: App Platform compatible
+- **AWS/GCP**: Container deployment ready
+
+## 📚 Documentation
+
+Detailed documentation is available in the `docs/` directory:
+- [API Reference](docs/API.md)
+- [Architecture Overview](docs/ARCHITECTURE.md)
+- [Database Schema](docs/DATABASE.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
+- [Development Setup](docs/DEVELOPMENT.md)
 
 ## 🤝 Contributing
 
-When extending this project:
-1. Follow Django best practices and PEP 8 style guide
-2. Maintain Green University branding consistency
-3. Add proper error handling and validation
-4. Include appropriate documentation
-5. Write tests for new features
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-## 📞 Support
+## 📄 License
 
-For technical questions or feature requests, please refer to the project documentation or contact the development team.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🎓 Campus Integration
+
+GreenLink is designed specifically for university environments with features like:
+- Department and batch organization
+- Academic calendar integration
+- Study group formation
+- Campus event management
+- Resource sharing marketplace
+- Student life enhancement
 
 ---
 
-**Built with 💚 for Green University Students**
-      // other options...
-    },
-  },
-])
+**Built with ❤️ for the modern campus community**
 ```

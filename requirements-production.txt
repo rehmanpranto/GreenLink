@@ -1,0 +1,37 @@
+# Production requirements for GreenLink with PostgreSQL support
+# Install with: pip install -r requirements-production.txt
+
+# Base requirements
+Django==4.2.7
+Pillow==10.0.1
+django-crispy-forms==2.0
+crispy-bootstrap5==0.7
+channels==4.0.0
+channels-redis==4.1.0
+django-cors-headers==4.3.1
+python-decouple==3.8
+gunicorn==21.2.0
+whitenoise==6.6.0
+django-widget-tweaks==1.5.0
+
+# PostgreSQL support (choose one based on your Python version)
+# For Python 3.11 and below:
+# psycopg2-binary==2.9.9
+
+# For Python 3.12+ (including 3.13):
+# psycopg[binary]>=3.1.0
+
+# Alternative for Python 3.13 if psycopg doesn't work:
+# django-environ==0.11.2  # For environment variable management
+# dj-database-url==2.1.0  # For database URL parsing
+
+# Security and monitoring
+sentry-sdk==1.38.0  # Error tracking (optional)
+
+# Cloud storage (if using AWS S3 for media files)
+# django-storages==1.14.2
+# boto3==1.29.0
+
+# Cache (if using Redis)
+# redis==5.0.1
+# django-redis==5.4.0
